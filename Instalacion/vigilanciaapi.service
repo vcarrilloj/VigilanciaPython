@@ -1,0 +1,12 @@
+[Unit]
+Description=VigilanciaAPI Service
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/fastapi-env
+ExecStart=/home/pi/fastapi-env/bin/uvicorn main:app --host 0.0.0.0 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
