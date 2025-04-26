@@ -49,5 +49,4 @@ def VerificarUsuario(usuario: str, clave: str):
 
 
 # GuardarDatosSensibles("","")
-# print(CargarDatosSensibles(""))
-#VerificarUsuario("MAESTRIA", "Maestria.123456")
+#VerificarUsuario("Usuario", "Clave Usuario")

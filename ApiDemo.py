@@ -45,3 +45,5 @@ async def Login(loginModel: LoginModel, response: Response, api_key: APIKey = De
         raise HTTPException(status_code=401, detail="Usuario o clave incorrectos")
     response.status_code = 200
     return response
+
+# Api de Pruebas

@@ -4,10 +4,12 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-SMTP_SERVER = "l0040183.ferozo.com"
+from DatosSensibles import CargarDatosSensibles
+
+SMTP_SERVER = CargarDatosSensibles("SMTP_SERVER")
 SMTP_PORT = 465  # Se usa SSL en este caso
-EMAIL_SENDER = "seguridad@asterisa.com.co"
-EMAIL_PASSWORD = "ProyectoMaestria2025*"
+EMAIL_SENDER = CargarDatosSensibles("EMAIL_SENDER")
+EMAIL_PASSWORD = CargarDatosSensibles("EMAIL_PASSWORD")
 
 
 def EnviarCorreo(destinatarios: list[str], asunto: str, cuerpo: str, adjunto: str):

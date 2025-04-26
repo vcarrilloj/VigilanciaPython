@@ -41,7 +41,7 @@ def EnviarNotificacionPorCanal(canal, titulo, mensaje, foto):
 topic = 'CanalVigilancia'
 message_title = "Detección de Movimiento"
 message_body = "Se detecto movimiento en la puerta."
-foto = 'prueb.png'
+foto = 'prueba.png'
 
 response = EnviarNotificacionPorCanal(topic, message_title, message_body, foto)
 

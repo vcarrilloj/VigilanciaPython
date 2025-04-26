@@ -242,7 +242,6 @@ def InsertarEventos(eventos: list[EventoModel], response: Response, api_key: API
 @app.put("/Eventos/Editar/{id}")
 def EditarEventos(id, evento: EventoModel, response: Response, api_key: APIKey = Depends(get_api_key)):
     try:
-        """
         CRUDEventos.Editar(id,
                            nombre=evento.nombre,
                            descripcion=evento.descripcion,
@@ -252,7 +251,6 @@ def EditarEventos(id, evento: EventoModel, response: Response, api_key: APIKey =
                            titulo=evento.titulo,
                            canal_notificacion=evento.canal_notificacion,
                            destinatarios=evento.destinatarios)
-                           """
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {e}")
     else:
