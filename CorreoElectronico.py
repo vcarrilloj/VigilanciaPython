@@ -19,15 +19,14 @@ def EnviarCorreo(destinatarios: list[str], asunto: str, cuerpo: str, adjunto: st
     msg["Subject"] = asunto
     msg.attach(MIMEText(cuerpo, "plain"))
 
-    image_path = adjunto
-
-    if os.path.exists(image_path):
-        with open(image_path, "rb") as img_file:
-            img = MIMEImage(img_file.read())
-            img.add_header("Content-Disposition", f"attachment; filename={os.path.basename(image_path)}")
-            msg.attach(img)
-    else:
-        raise Exception("La imagen no existe en la ruta especificada.")
+    if adjunto:
+        if os.path.exists(adjunto):
+            with open(adjunto, "rb") as img_file:
+                img = MIMEImage(img_file.read())
+                img.add_header("Content-Disposition", f"attachment; filename={os.path.basename(adjunto)}")
+                msg.attach(img)
+        else:
+            raise Exception("La imagen no existe en la ruta especificada.")
 
     try:
         server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)

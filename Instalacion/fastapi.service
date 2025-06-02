@@ -1,0 +1,14 @@
+[Unit]
+Description=VigilanciaAPI Service
+After=network.target
+
+[Service]
+Type=simple
+User=maestria
+WorkingDirectory=/home/maestria/Vigilancia
+ExecStartPre=/bin/sleep 30
+ExecStart=/home/maestria/Vigilancia/myenv/bin/uvicorn VigilanciaApi:app --host 0.0.0.0 --port 8050
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

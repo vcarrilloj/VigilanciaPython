@@ -77,16 +77,17 @@ def CapturarImagen(url):
 def ManejarEveto(self):
     if self._sensor_state():
         evento = CRUDEventos.ConsultarPorNombre(self.name)
-        foto = CapturarImagen(IpDvr + evento.url)
+        if evento:
+            foto = CapturarImagen(IpDvr + evento.url)
 
-        EnviarNotificacionPorCanal(evento.canal_notificacion, evento.titulo, evento.descripcion, foto)
+            EnviarNotificacionPorCanal(evento.canal_notificacion, evento.titulo, evento.descripcion, foto)
 
-        condiciones = CRUDCondicionesManuales.ConsultarMarcado()
-        escenarios = CRUDEventoCondicionEscenario.CosultarEC(evento.id, condiciones.id)
-        for escenario in escenarios:
-            EjecutarEscenario(escenario.escenario)
+            condiciones = CRUDCondicionesManuales.ConsultarMarcado()
+            escenarios = CRUDEventoCondicionEscenario.CosultarEC(evento.id, condiciones.id)
+            for escenario in escenarios:
+                EjecutarEscenario(escenario.escenario)
 
-        EnviarCorreo(evento.destinatarios, evento.titulo, evento.descripcion, f"Capturas/{foto}")
+            EnviarCorreo(evento.destinatarios, evento.titulo, evento.descripcion, f"Capturas/{foto}")
 
 
 class HikSensor(object):
@@ -117,7 +118,7 @@ class HikSensor(object):
 
     @property
     def unique_id(self):
-        """Return an unique ID."""
+        """Return a unique ID."""
         return '{}.{}'.format(self.__class__, self._id)
 
     @property

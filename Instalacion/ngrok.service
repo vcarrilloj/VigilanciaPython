@@ -1,0 +1,14 @@
+[Unit]
+Description=Ngrok
+After=network.target
+
+[Service]
+Type=simple
+User=maestria
+WorkingDirectory=/home/maestria/Vigilancia
+ExecStartPre=/bin/sleep 45
+ExecStart=/bin/bash -c 'source /home/maestria/Vigilancia/myenv/bin/activate && python /home/maestria/Vigilancia/ExponerNgrok.py'
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

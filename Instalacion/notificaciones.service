@@ -1,0 +1,16 @@
+[Unit]
+Description=NotificacionesDvr
+After=network.target
+
+[Service]
+Type=simple
+User=maestria
+WorkingDirectory=/home/maestria/Vigilancia
+ExecStartPre=/bin/sleep 60
+ExecStart=/bin/bash -c 'source /home/maestria/Vigilancia/myenv/bin/activate && python /home/maestria/Vigilancia/NotificacionesDvr.py'
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

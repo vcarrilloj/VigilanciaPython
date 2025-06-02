@@ -135,6 +135,7 @@ class CRUDEventos:
                 raise Exception("Debe ingresar el nombre del evento.")
         except Exception as e:
             print(f"Error al consultar: {e}")
+            return None
 
     @staticmethod
     def Editar(id, **kwargs):
