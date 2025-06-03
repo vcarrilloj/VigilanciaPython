@@ -1,13 +1,15 @@
 [Unit]
-Description=Ngrok
+Description=Exponer Ngrok
 After=network.target
 
 [Service]
 Type=simple
 User=maestria
 WorkingDirectory=/home/maestria/Vigilancia
-ExecStartPre=/bin/sleep 45
+ExecStartPre=/bin/sleep 60
 ExecStart=/bin/bash -c 'source /home/maestria/Vigilancia/myenv/bin/activate && python /home/maestria/Vigilancia/ExponerNgrok.py'
+StandardOutput=inherit
+StandardError=inherit
 Restart=on-failure
 
 [Install]

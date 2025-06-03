@@ -38,9 +38,9 @@ def EnviarNotificacionPorCanal(canal, titulo, mensaje, foto):
 
 
 # Ejemplo de uso
-topic = 'CanalVigilancia'
-message_title = "URL"
-message_body = "https://www3.animeflv.net/"
-foto = 'prueba.png'
-response = EnviarNotificacionPorCanal(topic, message_title, message_body, foto)
-print(f'Mensaje enviado: {response}')
+# topic = 'CanalVigilancia'
+# message_title = "URL"
+# message_body = "https://8411-181-204-42-51.ngrok-free.app"
+# foto = 'prueba.png'
+# response = EnviarNotificacionPorCanal(topic, message_title, message_body, foto)
+# print(f'Mensaje enviado: {response}')

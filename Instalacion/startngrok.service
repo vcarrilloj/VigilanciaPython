@@ -1,0 +1,13 @@
+[Unit]
+Description=Iniciar Ngrok
+After=network.target
+
+[Service]
+ExecStartPre=/bin/sleep 45
+ExecStart=/usr/local/bin/ngrok start --all --config /home/maestria/Vigilancia/Instalacion/startngrok.yml
+WorkingDirectory=/home/maestria/Vigilancia/Instalacion
+Restart=on-failure
+User=maestria
+
+[Install]
+WantedBy=multi-user.target

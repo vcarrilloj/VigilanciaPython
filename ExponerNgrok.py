@@ -1,21 +1,15 @@
-import subprocess
-import time
-import requests
-
-from CorreoElectronico import EnviarCorreo
 from FirebaseNotificacionesPush import EnviarNotificacionPorCanal
-
-# Iniciar ngrok (modo http en el puerto 5000)
-subprocess.Popen(['ngrok', 'http', '8050'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-# Esperar unos segundos para que ngrok arranque
-time.sleep(5)
+import requests
 
 # Obtener la URL pública de ngrok desde la API local
 try:
-    response = requests.get("http://localhost:4040/api/tunnels")
-    public_url = response.json()['tunnels'][0]['public_url']
-    print(response)
+    respuesta = requests.get("http://127.0.0.1:4040/api/tunnels")
+    if respuesta.status_code == 200:
+        datos = respuesta.json()
+        for tunel in datos.get("tunnels", []):
+            public_url = tunel.get("public_url")
+    else:
+        public_url = None
 except Exception as e:
     print(f"Error obteniendo la URL de ngrok: {e}")
     public_url = None
@@ -27,4 +21,3 @@ if public_url:
     mensaje = public_url
     foto = ''
     EnviarNotificacionPorCanal(canal, titulo, mensaje, foto)
-    #EnviarCorreo(["juliofer93@gmail.com"], "Url NGROK", public_url, None)
